@@ -1,0 +1,8 @@
+{% extends 'index.html' %}  <!-- Assuming you have a base template -->
+{% block content %}
+<div class="container">
+    <h1>Error Occurred</h1>
+    <p>{{ message }}</p>
+    <a href="{% url 'home' %}" class="btn btn-primary">Return Home</a>  <!-- Make sure 'home' is defined in your urls.py -->
+</div>
+{% endblock %}

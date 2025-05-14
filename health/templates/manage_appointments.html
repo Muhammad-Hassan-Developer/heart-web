@@ -1,0 +1,81 @@
+{% extends 'index.html' %}  <!-- Update this to extend your actual base template -->
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Manage Appointments</h2>
+    {% if appointments %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Appointment Time</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.patient.user.username }}</td>
+                <td>{{ appointment.appointment_time|date:"D, d M Y H:i" }}</td>
+                <td>{{ appointment.status }}</td>
+                <td>
+                    <a href="{% url 'confirm_appointment' appointment.id %}" class="btn btn-success btn-sm">Confirm</a>
+                    <a href="{% url 'cancel_appointment' appointment.id %}" class="btn btn-danger btn-sm">Cancel</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No appointments found.</p>
+    {% endif %}
+</div>
+{% endblock %}
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Manage Appointments</title>-->
+<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--    &lt;!&ndash; Optionally include your custom styles here &ndash;&gt;-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="container mt-5">-->
+<!--        <h2 class="mb-4">Manage Appointments</h2>-->
+<!--        {% if appointments %}-->
+<!--        <table class="table">-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th scope="col">Patient Name</th>-->
+<!--                    <th scope="col">Appointment Time</th>-->
+<!--                    <th scope="col">Status</th>-->
+<!--                    <th scope="col">Actions</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                {% for appointment in appointments %}-->
+<!--                <tr>-->
+<!--                    <td>{{ appointment.patient.user.username }}</td>-->
+<!--                    <td>{{ appointment.appointment_time|date:"D, d M Y H:i" }}</td>-->
+<!--                    <td>{{ appointment.status }}</td>-->
+<!--                    <td>-->
+<!--                        <a href="{% url 'confirm_appointment' appointment.id %}" class="btn btn-success btn-sm">Confirm</a>-->
+<!--                        <a href="{% url 'cancel_appointment' appointment.id %}" class="btn btn-danger btn-sm">Cancel</a>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                {% endfor %}-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--        {% else %}-->
+<!--        <p>No appointments found.</p>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Bootstrap JS and dependencies &ndash;&gt;-->
+<!--    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+<!--</body>-->
+<!--</html>-->
