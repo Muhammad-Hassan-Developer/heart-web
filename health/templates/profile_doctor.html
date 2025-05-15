@@ -86,12 +86,14 @@
             <div class="col-md-6 label">City:</div>
             <div class="col-md-6 highlight">{{ pro.address }}</div>
         </div>
-        {% ifnotequal error "pat" %}
+
+        {% if error != "pat" %}
         <div class="row">
             <div class="col-md-6 label">Specialist:</div>
             <div class="col-md-6 highlight">{{ pro.category }}</div>
         </div>
-        {% endifnotequal %}
+        {% endif %}
+
         <div class="text-center py-4">
             <a href="{% url 'edit_profile' %}" class="update-button">Update Detail</a>
         </div>

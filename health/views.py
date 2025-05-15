@@ -193,6 +193,18 @@ def error_page(request, message):
 def simple_page(request):
     return render(request, 'simple_page.html')
 # Other imports and views definitions above...
+def heart_rate_view(request):
+    try:
+        esp32_url = 'http://192.168.43.120/bpm'  # Replace with actual IP
+        response = requests.get(esp32_url, timeout=5)
+        data = response.json()
+        bpm = data.get('bpm', 'N/A')
+        message = data.get('msg', 'No message')
+    except Exception as e:
+        bpm = 'N/A'
+        message = f"Error: {str(e)}"
+
+    return render(request, 'heart_rate.html', {'bpm': bpm, 'message': message})
 
 def find_doctor(request):
     doctors = Doctor.objects.all()  # Retrieve all available doctors

@@ -24,6 +24,7 @@
         border-radius: 50px;
         padding: 10px 20px;
         transition: background 0.3s, transform 0.3s;
+        text-decoration: none;
     }
     .btn-custom:hover {
         background-color: #0056b3;
@@ -128,6 +129,14 @@
                             <label for="thalach">Max Heart Rate Achieved <small class="text-muted">(71-202)</small></label>
                             <input type="number" class="form-control" id="thalach" name="thalach" placeholder="Enter Maximum Heart Rate" required>
                         </div>
+
+                        <!-- New Button Added Here -->
+                        <div class="text-right mt-2 mb-4">
+                            <a href="http://127.0.0.1:8000/heart-rate/" target="_blank" class="btn btn-custom">
+                                View Live Heart Rate
+                            </a>
+                        </div>
+
                         <div class="form-group">
                             <label for="exang">Exercise Induced Angina <small class="text-muted">(1 = yes; 0 = no)</small></label>
                             <select id="exang" class="form-control custom-select" name="exang" required>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="refresh" content="5">
+    <meta charset="UTF-8" />
+    <title>Heart Rate Monitor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Narrow ECG Wave Container */
+        .wave {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 200%;
+            height: 80px; /* narrower height */
+            transform: translateY(-50%);
+            overflow: visible;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ECG SVG wave */
+        .wave svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: rgba(255, 0, 0, 0.6);
+            stroke-width: 3; /* thinner line */
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            animation: moveWave 5s linear infinite; /* faster movement */
+        }
+
+        @keyframes moveWave {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .card {
+            position: relative;
+            z-index: 2;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #0077b6;
+            margin-bottom: 20px;
+        }
+
+        .heart-icon {
+            font-size: 60px;
+            color: red;
+            animation: pulse 1s infinite;
+            margin-bottom: 20px;
+        }
+
+        .bpm-label {
+            font-size: 20px;
+            color: #555;
+        }
+
+        .bpm {
+            font-size: 60px;
+            color: #00b894;
+            font-weight: bold;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <!-- ECG Wave -->
+    <div class="wave">
+        <svg viewBox="0 0 1200 80" preserveAspectRatio="none" >
+            <!-- A more narrow, typical ECG shape -->
+            <path d="M0 40 L100 40 L120 10 L140 70 L160 40 L180 40 L200 40 L220 10 L240 70 L260 40 L280 40 L300 40 L320 10 L340 70 L360 40 L380 40 L400 40 L420 10 L440 70 L460 40 L480 40 L500 40 L520 10 L540 70 L560 40 L580 40 L600 40 L620 10 L640 70 L660 40 L680 40 L700 40 L720 10 L740 70 L760 40 L780 40 L800 40 L820 10 L840 70 L860 40 L880 40 L900 40 L920 10 L940 70 L960 40 L980 40 L1000 40 L1020 10 L1040 70 L1060 40 L1080 40 L1100 40 L1120 10 L1140 70 L1160 40 L1180 40 L1200 40" />
+        </svg>
+    </div>
+
+    <div class="card">
+        <h1>ESP32 with Pulse sensor</h1>
+        <div class="heart-icon">❤️</div>
+        <p class="bpm-label">Your BPM is:</p>
+        <div class="bpm">{{ bpm }}</div>
+        <div class="footer">Auto-refreshes every 5 seconds</div>
+    </div>
+</body>
+</html>
